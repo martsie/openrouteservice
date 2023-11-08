@@ -32,6 +32,13 @@ jobs:
         with:
           lxd_version: ${{ env.LXD_VERSION }}
 
+      - name: Init LXD
+        shell: bash
+        run: |
+          lxd init --auto
+          lxd init --dump
+          sudo systemctl status snap.lxd.daemon.service
+
       - name: Check container cache
         id: get-cache
         uses: actions/cache@v2
